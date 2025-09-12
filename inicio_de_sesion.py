@@ -31,7 +31,7 @@ while registro.lower() == "no":   #NO, el programa pide los datos para ser regis
 if registro.lower() == "si":   #SI, ya esta registrado ingresa su correo y contraseña.
   correo= input("Por favor ingrese su correo electronico: ")
   contraseña= input("Por favor ingrese su contraseña: ")
-  print("Has ingresado a la pagina")  #Puede ingresar correctamente a la pagina
+  print("   \n ¡Has ingresado a la pagina! :)")  #Puede ingresar correctamente a la pagina
 
 #--------------------------------------- CATALOGO DE PRODUCTOS -----------------------------------
   productos = [
@@ -40,56 +40,83 @@ if registro.lower() == "si":   #SI, ya esta registrado ingresa su correo y contr
        ("Teclado gamer", 95000),
        ("Memoria USB 32GB", 25000),
        ( "Cargador portátil", 67000) ]
-  print ("\n PRODUCTOS DISPONIBLES")
-  for i, productos in enumerate(productos, start=1):
-        print(f"{i}. {productos[0]} - ${productos[1]}")
+  print (" \n ESTOS SON NUESTROS PRODUCTOS DISPONIBLES")
+  for i, producto in enumerate(productos, start=1):
+        print(f"{i}. {producto[0]} - ${producto[1]}")
 
 #---------------------------------------CARRITO DE COMPRAS --------------------------------------
-  carrito = []
+        carrito = []
 
   while True:
-          opcion = (input("\n Ingrese el número del producto para agregar al carrito (0 para terminar): "))
+       opcion = int(input("\n Ingrese el número del producto para agregar al carrito (0 para terminar): "))
 
-          if opcion == 0:
+       if opcion == 0:
       
-             break
+          break
       
-          if opcion == "1":
-            carrito.append(productos[0])
-            print(f" {productos[0]} agregado al carrito por ${productos[1]}")
-          elif opcion == "2":
-             carrito.append(productos[1])
-             print(f" {productos[1][0]} agregado al carrito por ${productos[1][1]}")
-          elif opcion == "3":
-             carrito.append(productos[2])
-             print(f" {productos[2][0]} agregado al carrito por ${productos[2][1]}")
-          elif opcion == "4":
-             carrito.append(productos[3])
-             print(f" {productos[3][0]} agregado al carrito por ${productos[3][1]}")
-          elif opcion == "5":
-            carrito.append(productos[4])
-            print(f" {productos[4][0]} agregado al carrito por ${productos[4][1]}")
-          else:
-             print(" Opción inválida.")
-
-             print(f"Su carrito de compras")
+       if 1 <= opcion <= len(productos):
+          producto= productos[opcion - 1]
+          carrito.append(producto)
+          print(f"El producto '{producto[0]}' ha sido agregado al carrito")
+          
+       else:
+          print("Opcion invalida, intentalo de nuevo")
+  print(f" \n Este es su carrito de compras \n {carrito}")
+  dirección=input("\n Ingrese la dirección donde llegara su pedido: ")
 
 
-#-----------------------------------------CARRITO DE COMPRAS-----------------------------------
+#-----------------------------------------CARRITO PAGAR-----------------------------------
 
-#    print ("\n=== CARRITO ===")
-#   total = 0
+  print ("\n=== CARRITO ===")
+  total = 0
 
-#   for producto in carrito:
-#     print(f"- {producto[0]}: ${producto[1]}")
-#     total += producto[1]
+  for producto in carrito:
+   print(f"- {producto[0]}: ${producto[1]}")
+  
 
-# iva = 0.19 * total
-# precio_iva = total + iva
+#------------------------------------------------FACTURA DE COMPRA-------------------------------------------------
+  print ("\n=== FACTURA ===")
+  total = 0
 
-# print(f"\nSubtotal: ${total}")
-# print(f"IVA (19%): ${iva}")
-# print(f"Total a pagar: ${precio_iva}")
+  for producto in carrito:
+   print(f"- {producto[0]}: ${producto[1]}")
+  total += producto[1]
+
+  iva = 0.19 * total
+  precio_iva = total + iva
+
+  print(f"\nSubtotal: ${total}")
+  print(f"IVA (19%): ${iva}")
+  print(f"Total a pagar: ${precio_iva}")
+
+  print(f"\nla direccion donde llegara su pedido es: {dirección}")
 
 
-#--------------------------------------------------------FACTURA DE COMPRA-----------------------------------------
+#------------------------------------------------METODOS DE PAGO-------------------------------------------------
+
+  print("\n ===METODOS DE PAGO===")
+
+  pago={
+    "1":"BANCOLOMBIA",
+    "2":"NEQUI",
+    "3":"DAVIPLATA",
+    "4":"PAYPAL",
+    "5":"APPLE PAY",
+    "6":"SALIR"
+   }
+
+  while True: 
+    for clave,valor in pago.items():
+        print(f"[{clave}] {valor}")
+    metodos_de_pago=input("\n Ingrese un metodo de pago: ")
+    if metodos_de_pago in pago:
+        if metodos_de_pago == 6:
+            break
+        else:
+            print(f"Has elegido {pago[metodos_de_pago]}\n")
+            break
+    else: 
+        print("Opción o valida, intenta de nuevo")
+
+
+
