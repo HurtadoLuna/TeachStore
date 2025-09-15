@@ -66,7 +66,7 @@ if registro.lower() == "si":   #SI, ya esta registrado ingresa su correo y contr
        else:  #Si la opcion no es valida le pide al usuario que intente de nuevo.
           print("Opcion invalida, intentalo de nuevo")
   print(f" \n Este es su carrito de compras \n {carrito}") #Muestra el contenido del varito al usuario.
-  dirección=input("\n Ingrese la dirección donde llegara su pedido: ") #Solicita la direccion de entrega del pedido.
+  
 
 
 #-----------------------------------------CARRITO PAGAR-----------------------------------
@@ -77,32 +77,12 @@ if registro.lower() == "si":   #SI, ya esta registrado ingresa su correo y contr
   for producto in carrito:  #Recorre todos los productos que el usuario seleciono en el carrito.
    print(f"- {producto[0]}: ${producto[1]}")  #Muestra el nombre y precio de cada producto.
   
-
-#------------------------------------------------FACTURA DE COMPRA-------------------------------------------------
-  print ("\n=== FACTURA ===")
-  total = 0  #Se inicia en cero para ir acumulando el total de los productos.
-
-  for producto in carrito:   #Recorre todos los productos que el usuario seleciono en el carrito.
-   print(f"- {producto[0]}: ${producto[1]}")  #Muestra el nombre y precio de cada producto.
-  total += producto[1]  # Sumar el precio al total
-
-  iva = 0.19 * total  #Se calcula el IVA (19% en este caso).
-  precio_iva = total + iva   #Precio final con IVA incluido.
-
-#Se muestra detalles de la factura
-  print(f"\nSubtotal: ${total}")  
-  print(f"IVA (19%): ${iva}")
-  print(f"Total a pagar: ${precio_iva}")
-
-  print(f"\nla direccion donde llegara su pedido es: {dirección}")  #Se mostrara la direccion donde sera enviado el producto.
-
-
 #------------------------------------------------METODOS DE PAGO-------------------------------------------------
 
-  print("\n ===METODOS DE PAGO===")
+print("\n ===METODOS DE PAGO===")
 
 #Diccionario con los metodos de pago disponibles
-  pago={
+pago={
     "1":"BANCOLOMBIA",
     "2":"NEQUI",
     "3":"DAVIPLATA",
@@ -112,7 +92,7 @@ if registro.lower() == "si":   #SI, ya esta registrado ingresa su correo y contr
    }
 
 # Se crea un bucle para solicitar el método de pago hasta que el usuario elija uno válido
-  while True: 
+while True: 
     #Mostrar los metodos de pago dispponibles.
     for clave,valor in pago.items():
         print(f"[{clave}] {valor}")
@@ -130,5 +110,69 @@ if registro.lower() == "si":   #SI, ya esta registrado ingresa su correo y contr
         #Si la opcion no existe, pedirle al usuario que intente de nuevo.
         print("Opción o valida, intenta de nuevo")
 
+#------------------------------------------------FACTURA DE COMPRA-------------------------------------------------
+print ("\n=== FACTURA ===")
 
+#Librerias
+from datetime import datetime  # Para obtener fecha y hora actual
+import random   # Para generar números aleatorios (factura y pedido)
 
+#Datos de la factura 
+fecha_factura = datetime.now().strftime("%d/%m/%Y %H:%M:%S")  # Fecha y hora actual
+no_factura = random.randint(1000, 9999)   # Número de factura generado aleatoriamente
+no_pedido = random.randint(5000, 9999)    # Número de pedido generado aleatoriamente
+
+# Solicitar datos de envío al usuario
+print("\n--- Datos de Envío ---")
+enviar_a = {
+    "nombre": input("Nombre del destinatario: "),
+    "direccion": input("Dirección de envío: "),
+    "ciudad": input("Ciudad: "),
+    "telefono": input("Teléfono: ")
+}
+
+# Solicitar datos de facturación al usuario
+print("\n--- Datos de Facturación ---")
+facturar_a = {
+    "nombre": input("Nombre del comprador: "),
+    "telefono": input("Teléfono: "),
+    "direccion": input("Dirección: ")
+}
+
+total = 0  #Se inicia en cero para ir acumulando el total de los productos.
+
+for producto in carrito:   #Recorre todos los productos que el usuario seleciono en el carrito.
+   print(f"- {producto[0]}: ${producto[1]}")  #Muestra el nombre y precio de cada producto.
+total += producto[1]  # Sumar el precio al total
+
+iva = 0.19 * total  #Se calcula el IVA (19% en este caso).
+precio_iva = total + iva   #Precio final con IVA incluido.
+
+# Mostrar los detalles principales de la factura
+print("\n--- Detalles de Factura ---")
+print(f"No. Factura: {no_factura}")
+print(f"Fecha: {fecha_factura}")
+print(f"No. Pedido: {no_pedido}")
+
+#Se muestra detalles de la factura
+print(f"\nSubtotal: ${total}")  
+print(f"IVA (19%): ${iva}")
+print(f"Total a pagar: ${precio_iva}")
+
+# Mostrar información de envío
+print("\n--- ENVIAR A ---")
+print(f"Nombre: {enviar_a['nombre']}")
+print(f"Dirección: {enviar_a['direccion']}")
+print(f"Ciudad: {enviar_a['ciudad']}")
+print(f"Teléfono: {enviar_a['telefono']}")
+
+# Mostrar información de facturación
+print("\n--- FACTURAR A ---")
+print(f"Nombre: {facturar_a['nombre']}")
+print(f"Teléfono: {facturar_a['telefono']}")
+print(f"Dirección: {facturar_a['direccion']}")
+
+#Mostrar el metodo de pago selecionado
+print(f"pago por: {pago[metodos_de_pago]}\n")
+
+print("Gracias por su compra")
