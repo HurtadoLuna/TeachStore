@@ -2,56 +2,65 @@
 
 informacion=([])  #La informacion de registro se agrega a informacion.
 print("\n BIENVENIDO A TECHSTORE " )  #Print de bienvenido a la pagina,
-registro= input( "¿Ya te has registrado en nuestra pagina? \n -")  #Pregunta si ya esta registrado, si no, pide los datos.
 
-while registro.lower() == "no":   #NO, el programa pide los datos para ser registrado.
+while True:
+     registro= input( "¿Ya te has registrado en nuestra pagina? \n -").lower()  #Pregunta si ya esta registrado, si no, pide los datos.
+
+     if registro == "no":   #NO, el programa pide los datos para ser registrado.
         print("REGISTRATE AQUI:")
         nombre=input("Ingrese su  nombre: ")
         apellido=input("Ingrese su apellido: ")
         correo1= input("Por favor ingrese su correo electronico: ")
-        nombre_usuario=input("Ingrese su  nombre de usuario: ")
         contraseña1= input("Por favor ingrese su contraseña: ")
+        nombre_usuario=input("Ingrese su  nombre de usuario: ")
         edad= int(input("Ingrese su edad: "))
 
-        
-        informacion.append(nombre)
-        informacion.append(apellido)
-        informacion.append(correo1)   #Se agregan los datos del usuario a la lista
-        informacion.append(contraseña1)
-        informacion.append(edad)
-        informacion.append(nombre_usuario)
-
         if edad >= 18:   #Si es maypr de edad ´puede ingresar, si no, no puede ingresar
-            print(" \n YA ESTAS REGISTRADO!! \n ya puedes mirar nuestros productos")
+         informacion.append(nombre)
+         informacion.append(apellido)
+         informacion.append(correo1)   #Se agregan los datos del usuario a la lista
+         informacion.append(contraseña1)
+         informacion.append(edad)
+         informacion.append(nombre_usuario)
+
+         print(" \n YA ESTAS REGISTRADO!!​😁​ \n ya puedes mirar nuestros productos")
+         break #Se termina el ciclo
         else:
-               print("No puedes registrarte debido a que eres menor de edad")
+         print("No puedes registrarte debido a que eres menor de edad 🙃")
+         break   #Se termina el ciclo
+     
+     elif registro == "si":   #SI, ya esta registrado ingresa su correo y contraseña.
+         correo= input("Por favor ingrese su correo electronico: ")
+         contraseña= input("Por favor ingrese su contraseña: ")
+         print("   \n ¡Has ingresado a la pagina! ​😁​")  #Puede ingresar correctamente a la pagina.
+         break
 
-               break   #Se termina el ciclo
+     else:
+      print("Respuesta inválida, escribe 'si' o 'no' ❌​.")
+
+    
         
-if registro.lower() == "si":   #SI, ya esta registrado ingresa su correo y contraseña.
-  correo= input("Por favor ingrese su correo electronico: ")
-  contraseña= input("Por favor ingrese su contraseña: ")
-  print("   \n ¡Has ingresado a la pagina! :)")  #Puede ingresar correctamente a la pagina.
 
+ 
 #--------------------------------------- CATALOGO DE PRODUCTOS -----------------------------------
-  productos = [   #Se crea una lista con los productos disponibles.
+productos = [   #Se crea una lista con los productos disponibles.
        ("Audífonos", 45000),
        ("Mouse inalámbrico", 38000),
        ("Teclado gamer", 95000),
        ("Memoria USB 32GB", 25000),
        ( "Cargador portátil", 67000) ]
-  print (" \n ESTOS SON NUESTROS PRODUCTOS DISPONIBLES")  #Mostrar los productos disponibles.
+print (" \n ESTOS SON NUESTROS PRODUCTOS DISPONIBLES")  #Mostrar los productos disponibles.
 
 # Recorrer la lista de productos con enumerate() para obtener
 # tanto el índice (posición) como el contenido (nombre y precio).
 # Se inicia en 1 para numerar los productos desde el 1 en lugar de 0.
-  for i, producto in enumerate(productos, start=1):
+for i, producto in enumerate(productos, start=1):
         print(f"{i}. {producto[0]} - ${producto[1]}")
 
 #---------------------------------------CARRITO DE COMPRAS --------------------------------------
         carrito = []  #Se crea una lista vacia donde se agregaran los productos seleccionados por el usuario.
 
-  while True:
+while True:
        opcion = int(input("\n Ingrese el número del producto para agregar al carrito (0 para terminar): "))  #Se solicita al usuario ingresar el numero de los productos que desea agregar. Se usa el cero para terminar la seleccion.
 
        if opcion == 0:   #Si el usuario ingresa 0, ropmpe el ciclo y deja de pedir productos.
@@ -65,17 +74,17 @@ if registro.lower() == "si":   #SI, ya esta registrado ingresa su correo y contr
           
        else:  #Si la opcion no es valida le pide al usuario que intente de nuevo.
           print("Opcion invalida, intentalo de nuevo")
-  print(f" \n Este es su carrito de compras \n {carrito}") #Muestra el contenido del varito al usuario.
+       print(f" \n Este es su carrito de compras \n {carrito} 🛒​") #Muestra el contenido del varito al usuario.
   
 
 
 #-----------------------------------------CARRITO PAGAR-----------------------------------
 
-  print ("\n=== CARRITO ===") 
-  total = 0  #Se inicia en cero para ir acumulando el total de la compra.
+print ("\n=== CARRITO ===") 
+total = 0  #Se inicia en cero para ir acumulando el total de la compra.
 
-  for producto in carrito:  #Recorre todos los productos que el usuario seleciono en el carrito.
-   print(f"- {producto[0]}: ${producto[1]}")  #Muestra el nombre y precio de cada producto.
+for producto in carrito:  #Recorre todos los productos que el usuario seleciono en el carrito.
+      print(f"- {producto[0]}: ${producto[1]}")  #Muestra el nombre y precio de cada producto.
   
 #------------------------------------------------METODOS DE PAGO-------------------------------------------------
 
@@ -108,7 +117,7 @@ while True:
             break
     else: 
         #Si la opcion no existe, pedirle al usuario que intente de nuevo.
-        print("Opción o valida, intenta de nuevo")
+        print("Opción o valida ​❌​, intenta de nuevo")
 
 #------------------------------------------------FACTURA DE COMPRA-------------------------------------------------
 print ("\n=== FACTURA ===")
@@ -136,7 +145,6 @@ print("\n--- Datos de Facturación ---")
 facturar_a = {
     "nombre": input("Nombre del comprador: "),
     "telefono": input("Teléfono: "),
-    "direccion": input("Dirección: ")
 }
 
 total = 0  #Se inicia en cero para ir acumulando el total de los productos.
@@ -150,8 +158,8 @@ precio_iva = total + iva   #Precio final con IVA incluido.
 
 # Mostrar los detalles principales de la factura
 print("\n--- Detalles de Factura ---")
-print(f"No. Factura: {no_factura}")
 print(f"Fecha: {fecha_factura}")
+print(f"No. Factura: {no_factura}")
 print(f"No. Pedido: {no_pedido}")
 
 #Se muestra detalles de la factura
@@ -170,9 +178,9 @@ print(f"Teléfono: {enviar_a['telefono']}")
 print("\n--- FACTURAR A ---")
 print(f"Nombre: {facturar_a['nombre']}")
 print(f"Teléfono: {facturar_a['telefono']}")
-print(f"Dirección: {facturar_a['direccion']}")
+
 
 #Mostrar el metodo de pago selecionado
-print(f"pago por: {pago[metodos_de_pago]}\n")
+print(f"\n Pago por: {pago[metodos_de_pago]} 💳​")
 
-print("Gracias por su compra")
+print("GRACIAS POR SU COMPRA 😉 ")
