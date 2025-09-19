@@ -1,6 +1,6 @@
 # Inicio de sesion
 
-informacion=([])  #La informacion de registro se agrega a informacion.
+informacion=()  #La informacion de registro se agrega a informacion.
 print("\n BIENVENIDO A TECHSTORE " )  #Print de bienvenido a la pagina,
 
 while True:
@@ -24,7 +24,7 @@ while True:
          informacion.append(nombre_usuario)
 
          print(" \n YA ESTAS REGISTRADO!!​😁​ \n ya puedes mirar nuestros productos")
-         break #Se termina el ciclo
+         
         else:
          print("No puedes registrarte debido a que eres menor de edad 🙃")
          break   #Se termina el ciclo
@@ -33,34 +33,31 @@ while True:
          correo= input("Por favor ingrese su correo electronico: ")
          contraseña= input("Por favor ingrese su contraseña: ")
          print("   \n ¡Has ingresado a la pagina! ​😁​")  #Puede ingresar correctamente a la pagina.
-         break
+         
 
      else:
       print("Respuesta inválida, escribe 'si' o 'no' ❌​.")
 
-    
-        
-
- 
 #--------------------------------------- CATALOGO DE PRODUCTOS -----------------------------------
-productos = [   #Se crea una lista con los productos disponibles.
+
+     productos = [   #Se crea una lista con los productos disponibles.
        ("Audífonos", 45000),
        ("Mouse inalámbrico", 38000),
        ("Teclado gamer", 95000),
        ("Memoria USB 32GB", 25000),
        ( "Cargador portátil", 67000) ]
-print (" \n ESTOS SON NUESTROS PRODUCTOS DISPONIBLES")  #Mostrar los productos disponibles.
+     print (" \n ESTOS SON NUESTROS PRODUCTOS DISPONIBLES")  #Mostrar los productos disponibles.
 
 # Recorrer la lista de productos con enumerate() para obtener
 # tanto el índice (posición) como el contenido (nombre y precio).
 # Se inicia en 1 para numerar los productos desde el 1 en lugar de 0.
-for i, producto in enumerate(productos, start=1):
+     for i, producto in enumerate(productos, start=1):
         print(f"{i}. {producto[0]} - ${producto[1]}")
 
 #---------------------------------------CARRITO DE COMPRAS --------------------------------------
         carrito = []  #Se crea una lista vacia donde se agregaran los productos seleccionados por el usuario.
 
-while True:
+     while True:
        opcion = int(input("\n Ingrese el número del producto para agregar al carrito (0 para terminar): "))  #Se solicita al usuario ingresar el numero de los productos que desea agregar. Se usa el cero para terminar la seleccion.
 
        if opcion == 0:   #Si el usuario ingresa 0, ropmpe el ciclo y deja de pedir productos.
@@ -80,107 +77,107 @@ while True:
 
 #-----------------------------------------CARRITO PAGAR-----------------------------------
 
-print ("\n=== CARRITO ===") 
-total = 0  #Se inicia en cero para ir acumulando el total de la compra.
+     print ("\n=== CARRITO ===") 
+     total = 0  #Se inicia en cero para ir acumulando el total de la compra.
 
-for producto in carrito:  #Recorre todos los productos que el usuario seleciono en el carrito.
+     for producto in carrito:  #Recorre todos los productos que el usuario seleciono en el carrito.
       print(f"- {producto[0]}: ${producto[1]}")  #Muestra el nombre y precio de cada producto.
   
 #------------------------------------------------METODOS DE PAGO-------------------------------------------------
 
-print("\n ===METODOS DE PAGO===")
+     print("\n ===METODOS DE PAGO===")
 
 #Diccionario con los metodos de pago disponibles
-pago={
-    "1":"BANCOLOMBIA",
-    "2":"NEQUI",
-    "3":"DAVIPLATA",
-    "4":"PAYPAL",
-    "5":"APPLE PAY",
-    "6":"SALIR"
+     pago={
+      "1":"BANCOLOMBIA",
+      "2":"NEQUI",
+      "3":"DAVIPLATA",
+      "4":"PAYPAL",
+      "5":"APPLE PAY",
+      "6":"SALIR"
    }
 
 # Se crea un bucle para solicitar el método de pago hasta que el usuario elija uno válido
-while True: 
+     while True: 
     #Mostrar los metodos de pago dispponibles.
-    for clave,valor in pago.items():
+      for clave,valor in pago.items():
         print(f"[{clave}] {valor}")
 
-    metodos_de_pago=input("\n Ingrese un metodo de pago: ")  #Solicitar al usuario que seleccione un metodo de pago.
+      metodos_de_pago=input("\n Ingrese un metodo de pago: ")  #Solicitar al usuario que seleccione un metodo de pago.
 
-    if metodos_de_pago in pago:  #Valida si la opcion esta dentro del diccionario.
-        if metodos_de_pago == 6:  #Si selecciona la opcion 6 sale del ciclo.
+      if metodos_de_pago in pago:  #Valida si la opcion esta dentro del diccionario.
+         if metodos_de_pago == 6:  #Si selecciona la opcion 6 sale del ciclo.
             break
-        else:
+         else:
             #Confirma el metodo de pago elegido
             print(f"Has elegido {pago[metodos_de_pago]}\n")
-            break
-    else: 
-        #Si la opcion no existe, pedirle al usuario que intente de nuevo.
-        print("Opción o valida ​❌​, intenta de nuevo")
+         break
+      else: 
+       print("Opción o valida ​❌​, intenta de nuevo")
 
 #------------------------------------------------FACTURA DE COMPRA-------------------------------------------------
-print ("\n=== FACTURA ===")
+     print ("\n=== FACTURA ===")
 
 #Librerias
-from datetime import datetime  # Para obtener fecha y hora actual
-import random   # Para generar números aleatorios (factura y pedido)
+     from datetime import datetime  # Para obtener fecha y hora actual
+     import random   # Para generar números aleatorios (factura y pedido)
 
 #Datos de la factura 
-fecha_factura = datetime.now().strftime("%d/%m/%Y %H:%M:%S")  # Fecha y hora actual
-no_factura = random.randint(1000, 9999)   # Número de factura generado aleatoriamente
-no_pedido = random.randint(5000, 9999)    # Número de pedido generado aleatoriamente
+     fecha_factura = datetime.now().strftime("%d/%m/%Y %H:%M:%S")  # Fecha y hora actual
+     no_factura = random.randint(1000, 9999)   # Número de factura generado aleatoriamente
+     no_pedido = random.randint(5000, 9999)    # Número de pedido generado aleatoriamente
 
 # Solicitar datos de envío al usuario
-print("\n--- Datos de Envío ---")
-enviar_a = {
-    "nombre": input("Nombre del destinatario: "),
-    "direccion": input("Dirección de envío: "),
-    "ciudad": input("Ciudad: "),
-    "telefono": input("Teléfono: ")
+     print("\n--- Datos de Envío ---")
+     enviar_a = {
+      "nombre": input("Nombre del destinatario: "),
+      "direccion": input("Dirección de envío: "),
+      "ciudad": input("Ciudad: "),
+      "telefono": input("Teléfono: ")
 }
 
 # Solicitar datos de facturación al usuario
-print("\n--- Datos de Facturación ---")
-facturar_a = {
-    "nombre": input("Nombre del comprador: "),
-    "telefono": input("Teléfono: "),
-}
+     print("\n--- Datos de Facturación ---")
+     facturar_a = {
+     "nombre": input("Nombre del comprador: "),
+     "telefono": input("Teléfono: "),
+     }
 
-total = 0  #Se inicia en cero para ir acumulando el total de los productos.
+     total = 0  #Se inicia en cero para ir acumulando el total de los productos.
 
-for producto in carrito:   #Recorre todos los productos que el usuario seleciono en el carrito.
-   print(f"- {producto[0]}: ${producto[1]}")  #Muestra el nombre y precio de cada producto.
-total += producto[1]  # Sumar el precio al total
+     for producto in carrito:   #Recorre todos los productos que el usuario seleciono en el carrito.
+      print(f"- {producto[0]}: ${producto[1]}")  #Muestra el nombre y precio de cada producto.
+     total += producto[1]  # Sumar el precio al total
 
-iva = 0.19 * total  #Se calcula el IVA (19% en este caso).
-precio_iva = total + iva   #Precio final con IVA incluido.
+     iva = 0.19 * total  #Se calcula el IVA (19% en este caso).
+     precio_iva = total + iva   #Precio final con IVA incluido.
 
 # Mostrar los detalles principales de la factura
-print("\n--- Detalles de Factura ---")
-print(f"Fecha: {fecha_factura}")
-print(f"No. Factura: {no_factura}")
-print(f"No. Pedido: {no_pedido}")
+     print("\n--- Detalles de Factura ---")
+     print(f"Fecha: {fecha_factura}")
+     print(f"No. Factura: {no_factura}")
+     print(f"No. Pedido: {no_pedido}")
 
 #Se muestra detalles de la factura
-print(f"\nSubtotal: ${total}")  
-print(f"IVA (19%): ${iva}")
-print(f"Total a pagar: ${precio_iva}")
+     print(f"\nSubtotal: ${total}")  
+     print(f"IVA (19%): ${iva}")
+     print(f"Total a pagar: ${precio_iva}")
 
 # Mostrar información de envío
-print("\n--- ENVIAR A ---")
-print(f"Nombre: {enviar_a['nombre']}")
-print(f"Dirección: {enviar_a['direccion']}")
-print(f"Ciudad: {enviar_a['ciudad']}")
-print(f"Teléfono: {enviar_a['telefono']}")
+     print("\n--- ENVIAR A ---")
+     print(f"Nombre: {enviar_a['nombre']}")
+     print(f"Dirección: {enviar_a['direccion']}")
+     print(f"Ciudad: {enviar_a['ciudad']}")
+     print(f"Teléfono: {enviar_a['telefono']}")
 
 # Mostrar información de facturación
-print("\n--- FACTURAR A ---")
-print(f"Nombre: {facturar_a['nombre']}")
-print(f"Teléfono: {facturar_a['telefono']}")
+     print("\n--- FACTURAR A ---")
+     print(f"Nombre: {facturar_a['nombre']}")
+     print(f"Teléfono: {facturar_a['telefono']}")
 
 
 #Mostrar el metodo de pago selecionado
-print(f"\n Pago por: {pago[metodos_de_pago]} 💳​")
+     print(f"\n Pago por: {pago[metodos_de_pago]} 💳​")
 
-print("GRACIAS POR SU COMPRA 😉 ")
+     print("GRACIAS POR SU COMPRA 😉 ")
+ 
